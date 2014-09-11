@@ -18,6 +18,11 @@ namespace StringCalculator
 
             var values = input.Split(new [] { ",", "\n"}, StringSplitOptions.RemoveEmptyEntries);
 
+            if(values.Any(x => Int32.Parse(x) < 0))
+            {
+                throw new InvalidOperationException("Negative numbers are not allowed!");
+            }
+
             var result = values.Sum(x => Int32.Parse(x));
 
             return result;

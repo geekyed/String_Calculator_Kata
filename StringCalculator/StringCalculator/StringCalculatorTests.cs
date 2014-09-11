@@ -49,7 +49,7 @@ namespace StringCalculator
             try
             {
                 var stringCalculator = new StringCalculator();
-                var result = stringCalculator.Calculate(input);
+                stringCalculator.Calculate(input);
             }
             catch(Exception)
             {
