@@ -21,5 +21,18 @@ namespace StringCalculator
             var result = stringCalculator.Calculate("2");
             Assert.That(result, Is.EqualTo(2));
         }
+
+        [TestCase("1, 2", 3)]
+        public void TwoNumbersCommaDelimitedReturnsTheSum(string input, int expectedResult)
+        {
+            ActAndAssert(input, expectedResult);
+        }
+
+        private static void ActAndAssert(string input, int expectedResult)
+        {
+            var stringCalculator = new StringCalculator();
+            var result = stringCalculator.Calculate(input);
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
     }
 }
