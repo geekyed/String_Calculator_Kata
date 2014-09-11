@@ -42,6 +42,23 @@ namespace StringCalculator
             ActAndAssert(input, expectedResult);
         }
 
+        [TestCase("-7")]
+        [TestCase("12, -88")]
+        public void NegativeNumberThrowsAnException(string input)
+        {
+            try
+            {
+                var stringCalculator = new StringCalculator();
+                var result = stringCalculator.Calculate(input);
+            }
+            catch(Exception)
+            {
+                Assert.Pass("Exception was thrown");
+            }
+
+            Assert.Fail("Expected exception but was not thrown");
+        }
+
         private static void ActAndAssert(string input, int expectedResult)
         {
             var stringCalculator = new StringCalculator();
