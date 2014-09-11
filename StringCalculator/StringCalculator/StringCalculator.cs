@@ -20,12 +20,12 @@ namespace StringCalculator
 
             var valuesAsInt = values.Select(x => Int32.Parse(x));
 
-                if(valuesAsInt.Any(x => x < 0))
+            if(valuesAsInt.Any(x => x < 0))
             {
                 throw new InvalidOperationException("Negative numbers are not allowed!");
             }
 
-            return valuesAsInt.Sum();
+            return valuesAsInt.Where(x => x <= 1000).Sum();
         }
     }
 }
