@@ -10,7 +10,13 @@ namespace StringCalculator
 
         public int Calculate(string input)
         {
-            return 0;
+            if(string.IsNullOrEmpty(input))
+            {
+                return 0;
+            }
+
+            var result = Int32.Parse(input);
+            return result;
         }
     }
 }
