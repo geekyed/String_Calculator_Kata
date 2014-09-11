@@ -28,6 +28,12 @@ namespace StringCalculator
             ActAndAssert(input, expectedResult);
         }
 
+        [TestCase("6\n4", 10)]
+        public void TwoNumbersNewLineDelimitedReturnsTheSum(string input, int expectedResult)
+        {
+            ActAndAssert(input, expectedResult);
+        }
+
         private static void ActAndAssert(string input, int expectedResult)
         {
             var stringCalculator = new StringCalculator();
