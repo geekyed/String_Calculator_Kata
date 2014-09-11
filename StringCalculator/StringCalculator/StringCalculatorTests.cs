@@ -34,6 +34,14 @@ namespace StringCalculator
             ActAndAssert(input, expectedResult);
         }
 
+        [TestCase("1,6\n4", 11)]
+        [TestCase("3\n4\n7", 14)]
+        [TestCase("78,12,0", 90)]
+        public void ThreeNumbersDelimitedEitherWayReturnsTheSum(string input, int expectedResult)
+        {
+            ActAndAssert(input, expectedResult);
+        }
+
         private static void ActAndAssert(string input, int expectedResult)
         {
             var stringCalculator = new StringCalculator();
