@@ -67,7 +67,15 @@ namespace StringCalculator
         }
 
         [TestCase("//#\n1,2#3", 6)]
+        [TestCase("//p\n1p2\n3", 6)]
         public void ASingleCharDelimiterCanBeDefinedOnFirstLine(string input, int expectedResult)
+        {
+            ActAndAssert(input, expectedResult);
+        }
+
+        [TestCase("//[###]\n1###2\n3", 6)]
+        [TestCase("//[#p#]\n1#p#2\n3", 6)]
+        public void AMultiCharDelimiterCanBeDefinedOnFirstLine(string input, int expectedResult)
         {
             ActAndAssert(input, expectedResult);
         }
