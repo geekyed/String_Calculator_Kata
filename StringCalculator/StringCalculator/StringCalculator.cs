@@ -16,7 +16,7 @@ namespace StringCalculator
                 return 0;
             }
 
-            var values = input.Split(new [] { ","}, StringSplitOptions.RemoveEmptyEntries);
+            var values = input.Split(new [] { ",", "\n"}, StringSplitOptions.RemoveEmptyEntries);
 
             var result = values.Sum(x => Int32.Parse(x));
 
