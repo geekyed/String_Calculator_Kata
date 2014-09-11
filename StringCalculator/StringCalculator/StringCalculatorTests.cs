@@ -9,7 +9,9 @@ namespace StringCalculator
         [Test]
         public void AnEmptyStringReturnsZero()
         {
-
+            var stringCalculator = new StringCalculator();
+            var result = stringCalculator.Calculate("");
+            Assert.That(result, Is.EqualTo(0));
         }
     }
 }
