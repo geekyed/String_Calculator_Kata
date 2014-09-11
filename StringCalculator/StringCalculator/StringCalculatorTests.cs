@@ -59,6 +59,13 @@ namespace StringCalculator
             Assert.Fail("Expected exception but was not thrown");
         }
 
+        [TestCase("1, 3, 1000", 1004)]
+        [TestCase("4, 1001", 4)]
+        public void NumbersGreaterThan1000AreIgnored(string input, int expectedResult)
+        {
+            ActAndAssert(input, expectedResult);
+        }
+
         private static void ActAndAssert(string input, int expectedResult)
         {
             var stringCalculator = new StringCalculator();
