@@ -66,6 +66,12 @@ namespace StringCalculator
             ActAndAssert(input, expectedResult);
         }
 
+        [TestCase("//#\n1,2#3", 6)]
+        public void ASingleCharDelimiterCanBeDefinedOnFirstLine(string input, int expectedResult)
+        {
+            ActAndAssert(input, expectedResult);
+        }
+
         private static void ActAndAssert(string input, int expectedResult)
         {
             var stringCalculator = new StringCalculator();
