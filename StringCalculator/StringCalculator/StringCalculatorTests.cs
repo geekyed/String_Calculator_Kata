@@ -19,6 +19,14 @@ namespace StringCalculator
 
             Assert.That( stringCalculator.Add(input), Is.EqualTo(output));
         }
+
+        [Test]
+        public void AddingNegativeNumbersThows()
+        {
+            var stringCalculator = new StringCalculatorOne();
+
+            Assert.Throws<ArithmeticException>(()=>stringCalculator.Add("-1"));
+        }
     }
 
     public class StringCalculatorOne
