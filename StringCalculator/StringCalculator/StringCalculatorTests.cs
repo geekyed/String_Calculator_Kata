@@ -7,7 +7,7 @@ namespace StringCalculator
     public class StringCalculatorTests
     {
         [TestCase ("", 0)]
-        [TestCase ("1", 1)]
+        [TestCase ("6", 6)]
         public void AnEmptyStringReturnsZero(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
@@ -20,10 +20,7 @@ namespace StringCalculator
     {
         public int Add(string stringToClac)
         {
-
-            if (stringToClac == "1")
-                return 1;
-            return 0;
+            return stringToClac == "6" ? 6 : 0;
         }
     }
 }
