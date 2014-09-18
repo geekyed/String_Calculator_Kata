@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NUnit.Framework;
@@ -36,15 +37,25 @@ namespace StringCalculator
             if (string.IsNullOrEmpty(stringToAdd))
                 return 0;
 
-            var numbers = stringToAdd.Split(new [] {',', '\n'}).Select(Int32.Parse);
+            var numbers = GetNumbersFromString(stringToAdd);
 
-            if (numbers.Any(number => number < 0))
+            if (AreNumbersNegative(numbers))
             {
                 throw new ArithmeticException();
             }
 
             return numbers.Sum();
 
+        }
+
+        private static bool AreNumbersNegative(IEnumerable<int> numbers)
+        {
+            return numbers.Any(number => number < 0);
+        }
+
+        private static IEnumerable<int> GetNumbersFromString(string stringToAdd)
+        {
+            return stringToAdd.Split(new [] {',', '\n'}).Select(Int32.Parse);
         }
     }
 }
