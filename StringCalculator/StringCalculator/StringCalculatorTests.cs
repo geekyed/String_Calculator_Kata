@@ -20,6 +20,7 @@ namespace StringCalculator
     {
         public int Add(string stringToClac)
         {
+
             if (stringToClac == "1")
                 return 1;
             return 0;
