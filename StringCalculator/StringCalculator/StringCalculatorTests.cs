@@ -14,6 +14,7 @@ namespace StringCalculator
         [TestCase ("3,2", 5)]
         [TestCase ("6\n0", 6)]
         [TestCase ("1,50\n3", 54)]
+        [TestCase ("3,1001,4", 7)]
         public void StringCalculatorAddsString(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
@@ -37,14 +38,12 @@ namespace StringCalculator
             if (string.IsNullOrEmpty(stringToAdd))
                 return 0;
 
-            var numbers = GetNumbersFromString(stringToAdd);
+            var numbers = GetNumbersFromString(stringToAdd).ToList();
 
             if (AreNumbersNegative(numbers))
-            {
                 throw new ArithmeticException();
-            }
 
-            return numbers.Sum();
+            return numbers.Where(number => number <= 1000).Sum();
 
         }
 
