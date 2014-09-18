@@ -22,12 +22,12 @@ namespace StringCalculator
 
     public class StringCalculatorOne
     {
-        public int Add(string stringToClac)
+        public int Add(string stringToAdd)
         {
-            if (string.IsNullOrEmpty(stringToClac))
+            if (string.IsNullOrEmpty(stringToAdd))
                 return 0;
 
-            return stringToClac.Split(new [] {',', '\n'}).Select(Int32.Parse).Sum();
+            return stringToAdd.Split(new [] {',', '\n'}).Select(Int32.Parse).Sum();
         }
     }
 }
