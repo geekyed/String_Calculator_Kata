@@ -6,12 +6,13 @@ namespace StringCalculator
     [TestFixture]
     public class StringCalculatorTests
     {
-        [Test]
-        public void AnEmptyStringReturnsZero()
+        [TestCase ("", 0)]
+        [TestCase ("1", 1)]
+        public void AnEmptyStringReturnsZero(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
 
-            Assert.That( stringCalculator.Add(""), Is.EqualTo(0));
+            Assert.That( stringCalculator.Add(input), Is.EqualTo(output));
         }
     }
 
@@ -19,7 +20,9 @@ namespace StringCalculator
     {
         public int Add(string stringToClac)
         {
-            throw new NotImplementedException();
+            if (stringToClac == "1")
+                return 1;
+            return 0;
         }
     }
 }
