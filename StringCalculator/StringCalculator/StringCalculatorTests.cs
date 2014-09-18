@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace StringCalculator
@@ -8,6 +9,7 @@ namespace StringCalculator
     {
         [TestCase ("", 0)]
         [TestCase ("6", 6)]
+        [TestCase ("3,2", 5)]
         public void AnEmptyStringReturnsZero(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
@@ -20,7 +22,10 @@ namespace StringCalculator
     {
         public int Add(string stringToClac)
         {
-            return stringToClac == "6" ? 6 : 0;
+            if (stringToClac == "")
+                return 0;
+
+            return stringToClac.Split(',').Select(Int32.Parse).Sum();
         }
     }
 }
