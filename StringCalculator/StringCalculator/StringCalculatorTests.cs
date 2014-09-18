@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using NUnit.Framework;
@@ -15,6 +16,8 @@ namespace StringCalculator
         [TestCase ("6\n0", 6)]
         [TestCase ("1,50\n3", 54)]
         [TestCase ("3,1001,4", 7)]
+        [TestCase ("//#\n3,2#1", 6)]
+        [TestCase ("//[#^]\n3^2#1", 6)]
         public void StringCalculatorAddsString(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
@@ -35,10 +38,15 @@ namespace StringCalculator
     {
         public int Add(string stringToAdd)
         {
+            var input = stringToAdd; 
             if (string.IsNullOrEmpty(stringToAdd))
                 return 0;
 
-            var numbers = GetNumbersFromString(stringToAdd).ToList();
+            var newDelimiters = GetNewDelimiter(stringToAdd);
+            if (newDelimiters != null)
+                input = stringToAdd.Split('\n')[1];
+
+            var numbers = GetNumbersFromString(input, newDelimiters).ToList();
 
             if (AreNumbersNegative(numbers))
                 throw new ArithmeticException();
@@ -47,14 +55,25 @@ namespace StringCalculator
 
         }
 
+        private char[] GetNewDelimiter(string stringToAdd)
+        {
+            if (stringToAdd.StartsWith("//[")) 
+                return stringToAdd.Substring(4, stringToAdd.IndexOf(']')).ToCharArray();
+
+            return null;
+        }
+
         private static bool AreNumbersNegative(IEnumerable<int> numbers)
         {
             return numbers.Any(number => number < 0);
         }
 
-        private static IEnumerable<int> GetNumbersFromString(string stringToAdd)
+        private static IEnumerable<int> GetNumbersFromString(string stringToAdd, IEnumerable<char> newDelimiter)
         {
-            return stringToAdd.Split(new [] {',', '\n'}).Select(Int32.Parse);
+            var delimiters = new List<char> {',', '\n'};
+            if (newDelimiter != null)
+                delimiters.AddRange(newDelimiter);
+            return stringToAdd.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries).Select(Int32.Parse);
         }
     }
 }
