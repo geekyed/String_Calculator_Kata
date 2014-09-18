@@ -36,7 +36,15 @@ namespace StringCalculator
             if (string.IsNullOrEmpty(stringToAdd))
                 return 0;
 
-            return stringToAdd.Split(new [] {',', '\n'}).Select(Int32.Parse).Sum();
+            var numbers = stringToAdd.Split(new [] {',', '\n'}).Select(Int32.Parse);
+
+            if (numbers.Any(number => number < 0))
+            {
+                throw new ArithmeticException();
+            }
+
+            return numbers.Sum();
+
         }
     }
 }
