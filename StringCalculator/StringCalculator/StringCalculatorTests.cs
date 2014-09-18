@@ -10,7 +10,8 @@ namespace StringCalculator
         [TestCase ("", 0)]
         [TestCase ("6", 6)]
         [TestCase ("3,2", 5)]
-        public void AnEmptyStringReturnsZero(string input, int output)
+        [TestCase ("6\n0", 5)]
+        public void StringCalculatorAddsString(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
 
@@ -22,7 +23,7 @@ namespace StringCalculator
     {
         public int Add(string stringToClac)
         {
-            if (stringToClac == "")
+            if (string.IsNullOrEmpty(stringToClac))
                 return 0;
 
             return stringToClac.Split(',').Select(Int32.Parse).Sum();
