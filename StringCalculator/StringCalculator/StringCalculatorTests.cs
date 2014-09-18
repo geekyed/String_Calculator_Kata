@@ -12,6 +12,7 @@ namespace StringCalculator
         [TestCase ("6", 6)]
         [TestCase ("3,2", 5)]
         [TestCase ("6\n0", 6)]
+        [TestCase ("1,50\n3", 54)]
         public void StringCalculatorAddsString(string input, int output)
         {
             var stringCalculator = new StringCalculatorOne();
